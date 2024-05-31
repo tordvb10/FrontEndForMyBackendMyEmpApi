@@ -1,1 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fetch Data Example</title>
+</head>
+<body>
+  <div id="data-container">
+    <!-- Data will be displayed here -->
+  </div>
 
+  <script>
+    // JavaScript code to fetch data from the API endpoint
+    fetch('http://localhost:5270/api/Employees/GetAllEmployees')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        // Use the fetched data
+        console.log(data);
+        // Display data in the data-container div, for example:
+        document.getElementById('data-container').textContent = JSON.stringify(data);
+      })
+      .catch(error => {
+        // Handle any errors that occur during the fetch operation
+        console.error('There was a problem with the fetch operation:', error);
+      });
+  </script>
+</body>
+</html>
